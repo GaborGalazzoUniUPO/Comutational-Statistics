@@ -8,7 +8,7 @@ w_speed <- data[,7]
 
 diurno <-  w_speed[(1:(60*12))+(8*60)]
 notturno <-  na.omit(c(w_speed[(1:(60*8))],w_speed[(1:(60*4)+(20*60))]))
-par(mfrow = c(1,1))
+par(mfrow = c(1,4))
 par(mar = c(5, 5, 5, 5))
 
 testChiNorm <- function (data,title,intervals = 5) {
@@ -40,10 +40,10 @@ testChiNorm <- function (data,title,intervals = 5) {
   chi2
 }
 
-#chi2_d <- testChiNorm(diurno,"Diurno",10)
-#chi2_n <- testChiNorm(notturno,"Notturno",10)
+chi2_d <- testChiNorm(diurno - mean(diurno),"Diurno",10)
+chi2_n <- testChiNorm(notturno - mean(notturno),"Notturno",10)
 
-chi2_9_10 <- testChiNorm(w_speed[(1:60) + (9*60)], "Datte 9:00 alle 10:00",10)
-chi2_9_10 <- testChiNorm(w_speed[(1:60) + (9*60)]-mean(w_speed[(1:60) + (9*60)]), "Datte 9:00 alle 10:00",10)
+#chi2_9_10 <- testChiNorm(w_speed[(1:60) + (9*60)], "Datte 9:00 alle 10:00",10)
+chi2_9_10 <- testChiNorm(w_speed[(1:60) + (16*60)]-mean(w_speed[(1:60) + (16*60)]), "Datte 9:00 alle 10:00",10)
 
-#chi2_tot <-   testChiNorm(w_speed,"Giorno",10)
+chi2_tot <-   testChiNorm(w_speed-mean(w_speed),"Giorno",10)

@@ -28,23 +28,10 @@ m3cv6 <- array(dim = 5)
 m3cv7 <- array(dim = 5)
 gaussian6 <- array(dim=5)
 gaussian7 <- array(dim=5)
-for (i in 1:9) {
-  data <- read.table(paste0("dati/settembre/2018-09-0", i, ".dat"), sep = " ", skip = 0)
-  m1v6[i] <- moment(data[, 6], order = 1, center = FALSE)
-  m1cv6[i] <- moment(data[, 6], order = 1, center = TRUE)
-  m2v6[i] <- moment(data[, 6], order = 2, center = FALSE)
-  m2cv6[i] <- moment(data[, 6], order = 2, center = TRUE)
-  m1v7[i] <- moment(data[, 7], order = 1, center = FALSE)
-  m1cv7[i] <- moment(data[, 7], order = 1, center = TRUE)
-  m2v7[i] <- moment(data[, 7], order = 2, center = FALSE)
-  m2cv7[i] <- moment(data[, 7], order = 2, center = TRUE)
-  m3cv7[i] <- moment(data[,7], order = 3, center = TRUE)
-  m3cv6[i] <- moment(data[,6], order = 3, center = TRUE)
-  gaussian6[i] <- findGaussian(data[,6])
-  gaussian7[i] <- findGaussian(data[,7])
-}
-for (i in 10:30) {
-  data <- read.table(paste0("dati/settembre/2018-09-", i, ".dat"), sep = " ", skip = 0)
+
+for (i in 1:30) {
+  d<-if(i<10) paste0("0",i) else i
+  data <- read.table(paste0("dati/settembre/2018-09-", d, ".dat"), sep = " ", skip = 0)
   m1v6[i] <- moment(data[, 6], order = 1, center = FALSE)
   m1cv6[i] <- moment(data[, 6], order = 1, center = TRUE)
   m2v6[i] <- moment(data[, 6], order = 2, center = FALSE)

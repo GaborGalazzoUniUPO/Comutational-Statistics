@@ -28,7 +28,7 @@ r<-r/r[1]
 #r <- (r-min(r)+0.001)/(max(r)-min(r))
 plot(1:(30*interval),r)
 Tl_s<-sum(r)
-lines(exp(-(1:length(r))/Tl_e_rl),col="green", lty="dashed")
+lines(exp(-(1:length(r))/Tl_s),col="green", lty="dashed")
 m<-line(log(r))
 Tl_e_rl<- -1/m$coefficients[2]
 Tl_e_2<-mean(-(1:(30*interval))/log(r))

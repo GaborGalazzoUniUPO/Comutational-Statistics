@@ -25,7 +25,7 @@ dT<-0.1*tL
 c0<-2
 ε<-(2*sd(u)^2)/(c0*tL)
 
-num_particelle<-100
+num_particelle<-10000
 
 all_u1 <- matrix(NA,length(u),num_particelle)
 all_x1 <- matrix(NA,length(u),num_particelle)
@@ -57,11 +57,3 @@ plot(NULL, NULL,xlab = "TEMPO", ylab="VELOCITA'", xlim = c(0,length(u)), ylim = 
 for(i in 1:num_particelle){
   lines(all_x1[,i],col = colors[i])
 }
-mean(all_x1)
-sd(all_x1)
-mean(all_u1)
-sd(all_u1)
-mean(u)
-sd(u)
-mean(i)
-sd(i)

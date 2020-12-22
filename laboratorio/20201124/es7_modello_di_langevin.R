@@ -38,8 +38,7 @@ for(j in 1:num_particelle){
 
   for(i in 1:(length(u)-1)){
     dW <- norm[i]*sqrt(dT) # incremento nel rumore bianco basato su normale da u
-    #dU <- (-((u[i]/tL)*dT))+(sqrt(c0*ε)*dW) + u[i] # spostamento della pareticella
-    dU<-(1-(dT/tL))*u[i]+(sqrt(c0*ε)*dW)
+    dU <- (-((u[i]/tL)*dT))+(sqrt(c0*ε)*dW) # spostamento della pareticella
     u1<-c(u1,u1[i]+dU) # nuova posizione particella
     x1<-c(x1,x1[i]+(u1[i+1]*dT)) # nuova velocità particella
   }

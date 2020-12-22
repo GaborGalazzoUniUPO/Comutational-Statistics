@@ -1,5 +1,6 @@
-
+require(pracma)
 par(mfrow = c(2,1))
+par(mar = c(5, 5,0.5,0.5))
 
 w_speed<-NULL
 for(i in 1:3){
@@ -15,7 +16,6 @@ interval<-1
 
 i<-w_speed[(1:(60*interval)) + (h*60)]
 u <- i - mean(i)
-isZero<-FALSE
 r<-array(dim=(30*interval))
 for(τ in 0:(30*interval)){
   s<- NULL
@@ -25,24 +25,21 @@ for(τ in 0:(30*interval)){
   r[τ]<-mean(s)
 }
 r<-r/r[1]
-#r <- (r-min(r)+0.001)/(max(r)-min(r))
-plot(1:(30*interval),r)
-Tl_s<-sum(r)
-lines(exp(-(1:length(r))/Tl_s),col="green", lty="dashed")
+#r[r<=0]<-0.00001
+plot(r)
 m<-line(log(r))
 Tl_e_rl<- -1/m$coefficients[2]
-Tl_e_2<-mean(-(1:(30*interval))/log(r))
 g<- -(1:(30*interval))/log(r)
-m<-mode(g)
 lines(exp(-(1:length(r))/Tl_e_rl),col="blue", lty="dashed")
-lines(exp(-(1:length(r))/Tl_e_2),col="red", lty="dashed")
 #acf(u)
 
 
 i<-w_speed[(1:(60*interval)) + (h*60)]
-r <- acf(i,type = "covariance",plot = FALSE,lag.max = 30*interval)$acf[,,1]
-r<-r/sd(u)^2
-m<-line(log(r))
+u <- i - mean(i)
+r1 <- acf(u,type = "correlation",plot = FALSE,lag.max = 30*interval)$acf[,,1]
+r1<-r1/r1[1]
+#r1[r1<=0]<-0.00001
+m<-line(log(r1))
 tL <- -1/m$coefficients[2]
-plot(r)
-lines(exp(-(1:length(r))/tL))
+plot(r1)
+lines(exp(-(1:length(r1))/tL))

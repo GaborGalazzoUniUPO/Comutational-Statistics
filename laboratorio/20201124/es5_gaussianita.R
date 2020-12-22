@@ -52,9 +52,9 @@ testChiNorm <- function (data,title,intervals = 5) {
 
   chi2
 }
-#chi2_d <- testChiNorm(diurno - mean(diurno),"Diurno",10)
-#chi2_n <- testChiNorm(notturno - mean(notturno),"Notturno",10)
-#i <- w_speed[(1:60) + (9*60)]
-#chi2_9_10 <- testChiNorm(i-mean(i), "Dalle 9:00 alle 10:00",10)
-#chi2_tot <-   testChiNorm(w_speed-mean(w_speed),"Giorno",10)
+chi2_d <- testChiNorm(diurno - mean(diurno),"Diurno",10)
+chi2_n <- testChiNorm(notturno - mean(notturno),"Notturno",10)
+i <- w_speed[(1:60) + (9*60)]
+chi2_9_10 <- testChiNorm(i-mean(i), "Dalle 9:00 alle 10:00",10)
+chi2_tot <-   testChiNorm(w_speed-mean(w_speed),"Giorno",10)
 chi2_m_i <- testChiNorm(i_speed-mean(i_speed),"Mensile dalle 9:00 alle 10:00",5)
